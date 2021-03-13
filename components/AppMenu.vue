@@ -38,13 +38,19 @@ section {
   margin: 0 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 a {
   text-decoration: none;
 }
-.div-link :last-child {
-  margin-right: 0;
+.div-link {
+  :first-child {
+    margin-left: 0;
+  }
+  :last-child {
+    margin-right: 0;
+  }
+  width: 150px;
 }
 .links {
   margin: 0 0.5rem;
@@ -53,9 +59,6 @@ a {
 .text-links {
   font-size: 1.2rem;
   font-weight: 600;
-}
-.brand-div {
-  margin-left: -4rem;
 }
 .brand {
   font-family: 'Lobster', 'Courier New', Courier, monospace;
@@ -68,5 +71,10 @@ a {
   a {
     display: flex;
   }
+  :first-child {
+    margin-left: 0;
+  }
+  width: 150px;
+  justify-content: flex-end;
 }
 </style>

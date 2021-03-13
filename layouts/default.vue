@@ -1,16 +1,21 @@
 <template>
   <div>
-    <AppMenu />
-    <Nuxt />
+    <div class="content">
+      <AppMenu />
+      <Nuxt />
+    </div>
+    <AppFooter />
   </div>
 </template>
 
 <script>
 import AppMenu from '@/components/AppMenu.vue'
+import AppFooter from '@/components/AppFooter.vue'
 
 export default {
   components: {
     AppMenu,
+    AppFooter,
   },
 }
 </script>
@@ -34,5 +39,9 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.content {
+  min-height: calc(100vh - 40px);
 }
 </style>
