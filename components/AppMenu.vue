@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <section>
+    <section class="container">
       <div class="div-link">
         <nuxt-link to="/buy" class="links text-links">Acheter</nuxt-link>
         <nuxt-link to="/sell" class="links text-links">Vendre</nuxt-link>
@@ -34,14 +34,10 @@ nav {
   background-color: #fff;
 }
 section {
-  height: 50px;
-  margin: 0 1.5rem;
+  height: 55px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-}
-a {
-  text-decoration: none;
+  justify-content: space-between;
 }
 .div-link {
   :first-child {
@@ -50,21 +46,17 @@ a {
   :last-child {
     margin-right: 0;
   }
-  width: 150px;
+  width: 180px;
 }
 .links {
   margin: 0 0.5rem;
   color: $primary;
 }
 .text-links {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
-.brand {
-  font-family: 'Lobster', 'Courier New', Courier, monospace;
-  font-size: 2.8rem;
-  color: $secondary;
-}
+
 // Getting the icons lined-up vertically
 .icons {
   display: flex;
@@ -73,8 +65,12 @@ a {
   }
   :first-child {
     margin-left: 0;
+    margin-right: 1rem;
   }
-  width: 150px;
+  width: 180px;
   justify-content: flex-end;
+}
+.material-icons {
+  font-size: 2.1rem;
 }
 </style>

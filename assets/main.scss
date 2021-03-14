@@ -1,0 +1,29 @@
+@import '~assets/variables.scss';
+
+// Sticky footer
+footer {
+  height: 39px;
+  background: #fff;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  color: $primary;
+  font-size: 1.1rem;
+}
+
+// Links decoration
+a {
+  text-decoration: none;
+}
+
+// Brand logo
+.brand {
+  font-family: 'Lobster', 'Courier New', Courier, monospace;
+  font-size: 3rem;
+  color: $secondary;
+}
+
+// Container
+.container {
+  margin: 0 10%;
+}

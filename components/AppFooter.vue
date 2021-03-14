@@ -1,6 +1,15 @@
 <template>
   <footer>
-    <p>Made by Nicolas Martins</p>
+    <p>
+      Réalisé par
+      <a
+        href="https://github.com/NicolasMRTNS"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="gh-link"
+        >Nicolas Martins</a
+      >
+    </p>
   </footer>
 </template>
 
@@ -9,14 +18,7 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/variables.scss';
-
-footer {
-  height: 40px;
-  background: #fff;
-  display: flex;
-  place-content: center;
-  place-items: center;
-  color: $primary;
+.gh-link {
+  text-decoration: underline;
 }
 </style>

@@ -1,9 +1,20 @@
 <template>
-  <div class="container"></div>
+  <div>
+    <AppHeader />
+    <AppPresentation />
+  </div>
 </template>
 
 <script>
-export default {}
+import AppHeader from '@/components/AppHeader.vue'
+import AppPresentation from '@/components/AppPresentation.vue'
+
+export default {
+  components: {
+    AppHeader,
+    AppPresentation,
+  },
+}
 </script>
 
 <style></style>
