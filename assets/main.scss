@@ -67,4 +67,30 @@ input {
   border-radius: 10px;
   padding: 0.7rem;
   margin: 1.3rem 0;
+  font-family: inherit;
+}
+
+// Form (login and signin) style
+.form-header {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.form-body {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+}
+button {
+  cursor: pointer;
+  margin-top: 1.3rem;
+}
+.form-aside {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  margin-top: 20vh;
+  h2 {
+    margin-bottom: 1rem;
+  }
+  margin-bottom: 1rem;
 }
