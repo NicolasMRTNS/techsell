@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <main>
     <AppHeader />
     <AppPresentation />
-  </div>
+  </main>
 </template>
 
 <script>

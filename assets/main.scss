@@ -1,5 +1,10 @@
 @import '~assets/variables.scss';
 
+// Text color
+.color-primary {
+  color: $primary;
+}
+
 // Sticky footer
 footer {
   height: 39px;
@@ -48,8 +53,18 @@ a {
   background-color: $btn-border-color;
   padding: 0.7rem 2rem;
   border-radius: 10px;
+  border: 0;
   color: #fff;
   font-size: 1.3rem;
-  width: 140px;
+  width: 160px;
   text-align: center;
+}
+
+// Input style
+input {
+  width: 200px;
+  border: 2px solid $btn-border-color;
+  border-radius: 10px;
+  padding: 0.7rem;
+  margin: 1.3rem 0;
 }
