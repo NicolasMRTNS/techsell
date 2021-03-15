@@ -14,6 +14,9 @@ footer {
 // Links decoration
 a {
   text-decoration: none;
+  :visited {
+    color: $primary;
+  }
 }
 
 // Brand logo
@@ -23,7 +26,30 @@ a {
   color: $secondary;
 }
 
+@media screen and (max-width: 700px) {
+  .brand {
+    font-size: 2.5rem;
+  }
+}
+
 // Container
 .container {
   margin: 0 10%;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    margin: 0;
+  }
+}
+
+// Button style
+.btn-default {
+  background-color: $btn-border-color;
+  padding: 0.7rem 2rem;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.3rem;
+  width: 140px;
+  text-align: center;
 }

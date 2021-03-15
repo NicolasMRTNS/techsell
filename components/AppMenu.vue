@@ -73,4 +73,31 @@ section {
 .material-icons {
   font-size: 2.1rem;
 }
+
+// Responsive
+@media screen and (max-width: 700px) {
+  .div-link {
+    width: auto;
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+  }
+  .text-links {
+    font-size: 0.9rem;
+    margin: 0;
+    margin-bottom: 0.3rem;
+    font-weight: 400;
+  }
+  .icons {
+    width: auto;
+    :first-child {
+      margin-right: 0.5rem;
+    }
+  }
+  .material-icons {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
 </style>
