@@ -2,11 +2,15 @@
   <main class="container">
     <aside>
       <h1>Voici ce que nos clients vendent dans la catégorie :</h1>
-      <select @change="selectedOption = $event.target.value">
+      <!-- <select @change="selectedOption = $event.target.value">
         <option v-for="option in selectOptions" :key="option">
           {{ option }}
         </option>
-      </select>
+      </select> -->
+      <AppSelect
+        :optionsarray="selectOptions"
+        @change="selectedOption = $event"
+      />
     </aside>
     <section class="items">
       <article v-for="product in filteredOption" :key="product._id">
@@ -28,12 +32,16 @@
 </template>
 
 <script>
+import AppSelect from '@/components/AppSelect.vue'
 import { mapState } from 'vuex'
 
 export default {
+  components: {
+    AppSelect,
+  },
   data() {
     return {
-      selectedOption: 'Portable Android',
+      selectedOption: 'Portable Android ',
     }
   },
   computed: {
@@ -74,6 +82,8 @@ article {
   margin: 2rem;
   img {
     border-radius: 10px 10px 0 0;
+    width: 200;
+    height: 250;
   }
 }
 .text-item {

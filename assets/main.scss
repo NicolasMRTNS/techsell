@@ -73,8 +73,9 @@ a {
   margin: 2.5rem 0.3rem 0.3rem auto;
 }
 
-// Input style
-input {
+// Input and text area style
+input,
+textarea {
   width: 200px;
   border: 2px solid $btn-border-color;
   border-radius: 10px;
