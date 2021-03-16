@@ -2,35 +2,48 @@
   <main class="container">
     <aside>
       <h1>Voici ce que nos clients vendent dans la catégorie :</h1>
-      <AppSelect />
+      <select @change="selectedOption = $event.target.value">
+        <option v-for="option in selectOptions" :key="option">
+          {{ option }}
+        </option>
+      </select>
     </aside>
     <section class="items">
-      <article v-for="product in productData" :key="product._id">
+      <article v-for="product in filteredOption" :key="product._id">
         <img :src="product.image" :alt="product.description" />
         <div class="text-item">
           <div class="name-and-price">
             <p>{{ product.name }}</p>
-            <p>{{ product.price }} €</p>
+            <p class="color-primary">{{ product.price }} €</p>
           </div>
-          <button :id="product._id" type="submit" class="btn-item">
-            Voir l'article
-          </button>
+          <button :id="product._id" class="btn-item">Voir l'article</button>
         </div>
       </article>
+      <!-- Directive for empty return of the filteredOption function -->
+      <p v-if="!filteredOption.length" class="text-center">
+        Pas d'articles disponibles pour la catégorie {{ selectedOption }}
+      </p>
     </section>
   </main>
 </template>
 
 <script>
-import AppSelect from '@/components/AppSelect.vue'
 import { mapState } from 'vuex'
 
 export default {
-  components: {
-    AppSelect,
+  data() {
+    return {
+      selectedOption: 'Portable Android',
+    }
   },
   computed: {
-    ...mapState(['productData']),
+    ...mapState(['productData', 'selectOptions']),
+    // filter options depending on selected option
+    filteredOption() {
+      return this.productData.filter((el) => {
+        return el.category.includes(this.selectedOption)
+      })
+    },
   },
 }
 </script>
@@ -66,13 +79,19 @@ article {
 .text-item {
   display: flex;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
 }
 .name-and-price {
   font-size: 1.2rem;
   margin-left: 0.3rem;
+  width: 120px;
+  :last-child {
+    font-size: 1.1rem;
+  }
 }
-
+p {
+  font-size: 1.2rem;
+}
 // Responsive
 @media screen and (max-width: 800px) {
   aside {
