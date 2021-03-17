@@ -1,4 +1,4 @@
-@import '~assets/variables.scss';
+@import '~/assets/variables.scss';
 
 // Text color
 .color-primary {
@@ -54,17 +54,27 @@ a {
 }
 
 // Button style
+button {
+  cursor: pointer;
+  margin-top: 1.3rem;
+  outline: none;
+}
+button:hover,
+.btn-default:hover,
+.btn-item:hover {
+  color: $btn-border-color;
+  background: #fff;
+}
 .btn-default {
   background-color: $btn-border-color;
   padding: 0.7rem 2rem;
   border-radius: 10px;
-  border: 0;
+  border: 1px solid $btn-border-color;
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   width: 160px;
   text-align: center;
 }
-
 .btn-item {
   @extend .btn-default;
   padding: 0.5rem 1rem;
@@ -83,6 +93,7 @@ textarea {
   margin: 1.3rem 0;
   font-family: inherit;
   font-size: 1rem;
+  outline: none;
 }
 
 // Form (login and signin) style
@@ -94,10 +105,6 @@ textarea {
   display: flex;
   flex-direction: column;
   place-items: center;
-}
-button {
-  cursor: pointer;
-  margin-top: 1.3rem;
 }
 .form-aside {
   display: flex;
@@ -116,4 +123,5 @@ select {
   font-family: inherit;
   font-size: 1rem;
   width: 170px;
+  outline: none;
 }

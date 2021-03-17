@@ -9,7 +9,7 @@ export const state = () => ({
   productData: [
     {
       _id: 2153248944598,
-      name: 'Pc Asus',
+      name: 'Xiaomi Redmi Note 8T',
       price: 500,
       category: 'Portable Android',
       description: "Un PC vendu comme neuf, n'a quasiment jamais été utilisé.",
@@ -17,7 +17,7 @@ export const state = () => ({
     },
     {
       _id: 54542318415,
-      name: 'PC HP',
+      name: 'Ordinateur portable HP',
       price: 1500,
       category: 'Ordinateur Portable',
       description: "Un PC vendu comme neuf, n'a quasiment jamais été utilisé.",
@@ -33,7 +33,7 @@ export const state = () => ({
     },
     {
       _id: 778742318415,
-      name: 'PC Chrome OS',
+      name: 'iPhone X Max',
       price: 400,
       category: 'Portable Apple',
       description: "Un PC vendu comme neuf, n'a quasiment jamais été utilisé.",

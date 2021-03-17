@@ -71,12 +71,17 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  :nth-child(2) {
+    margin-top: 0;
+  }
 }
 select {
   width: 200px;
+  padding: 0.7rem;
+  border-radius: 10px;
 }
 button {
-  width: 310px;
+  width: 300px;
   margin-bottom: 1rem;
 }
 </style>

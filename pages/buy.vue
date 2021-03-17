@@ -2,11 +2,6 @@
   <main class="container">
     <aside>
       <h1>Voici ce que nos clients vendent dans la catégorie :</h1>
-      <!-- <select @change="selectedOption = $event.target.value">
-        <option v-for="option in selectOptions" :key="option">
-          {{ option }}
-        </option>
-      </select> -->
       <AppSelect
         :optionsarray="selectOptions"
         @change="selectedOption = $event"
@@ -57,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/variables.scss';
+@import '~/assets/variables.scss';
 
 aside {
   display: flex;
