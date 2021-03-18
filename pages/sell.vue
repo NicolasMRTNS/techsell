@@ -76,12 +76,16 @@ form {
   }
 }
 select {
-  width: 200px;
   padding: 0.7rem;
   border-radius: 10px;
 }
-button {
+input,
+textarea,
+button,
+select {
   width: 300px;
+}
+button {
   margin-bottom: 1rem;
 }
 </style>

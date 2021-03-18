@@ -125,3 +125,20 @@ select {
   width: 170px;
   outline: none;
 }
+
+// Image style
+img {
+  border: 2px solid $btn-border-color;
+  border-radius: 10px;
+  width: 250px;
+  height: 200px;
+}
+
+// Fieldset style
+fieldset {
+  width: 230px;
+  border-color: $btn-border-color;
+  border-radius: 10px;
+  color: $btn-border-color;
+  margin-bottom: 1rem;
+}

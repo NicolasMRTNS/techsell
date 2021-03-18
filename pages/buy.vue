@@ -8,14 +8,16 @@
       />
     </aside>
     <section class="items">
-      <article v-for="product in filteredOption" :key="product._id">
+      <article v-for="product in filteredOption" :key="product.id">
         <img :src="product.image" :alt="product.description" />
         <div class="text-item">
           <div class="name-and-price">
             <p>{{ product.name }}</p>
             <p class="color-primary">{{ product.price }} €</p>
           </div>
-          <button :id="product._id" class="btn-item">Voir l'article</button>
+          <nuxt-link :to="`/product/${product.id}`" class="btn-item"
+            >Voir l'article</nuxt-link
+          >
         </div>
       </article>
       <!-- Directive for empty return of the filteredOption function -->
@@ -76,9 +78,8 @@ article {
   width: max-content;
   margin: 2rem;
   img {
+    border: 0;
     border-radius: 10px 10px 0 0;
-    width: 200;
-    height: 250;
   }
 }
 .text-item {

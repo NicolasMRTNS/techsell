@@ -8,7 +8,7 @@ export const state = () => ({
   ],
   productData: [
     {
-      _id: 2153248944598,
+      id: '2153248944598',
       name: 'Xiaomi Redmi Note 8T',
       price: 500,
       category: 'Portable Android',
@@ -16,7 +16,7 @@ export const state = () => ({
       image: 'https://picsum.photos/250/200',
     },
     {
-      _id: 54542318415,
+      id: '54542318415',
       name: 'Ordinateur portable HP',
       price: 1500,
       category: 'Ordinateur Portable',
@@ -24,7 +24,7 @@ export const state = () => ({
       image: 'https://picsum.photos/250/200',
     },
     {
-      _id: 5498454542318415,
+      id: '5498454542318415',
       name: 'MacBook Pro 17 pouces',
       price: 2000,
       category: 'Ordinateur MacOS',
@@ -32,7 +32,7 @@ export const state = () => ({
       image: 'https://picsum.photos/250/200',
     },
     {
-      _id: 778742318415,
+      id: '778742318415',
       name: 'iPhone X Max',
       price: 400,
       category: 'Portable Apple',
