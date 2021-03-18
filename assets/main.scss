@@ -1,4 +1,7 @@
-@import '~/assets/variables.scss';
+// Variables
+$primary: #3e66fb;
+$secondary: #2e4cbc;
+$btn-border-color: #9eb3fd;
 
 // Text color
 .color-primary {
@@ -10,6 +13,11 @@
   text-align: center;
 }
 
+// Border color
+.border-color {
+  border: 2px solid $btn-border-color;
+}
+
 // Sticky footer
 footer {
   height: 39px;
@@ -17,7 +25,6 @@ footer {
   display: flex;
   place-content: center;
   place-items: center;
-  color: $primary;
   font-size: 1.1rem;
 }
 
@@ -69,7 +76,6 @@ button:hover,
   background-color: $btn-border-color;
   padding: 0.7rem 2rem;
   border-radius: 10px;
-  border: 1px solid $btn-border-color;
   color: #fff;
   font-size: 1.2rem;
   width: 160px;
@@ -136,7 +142,7 @@ img {
 
 // Fieldset style
 fieldset {
-  width: 230px;
+  width: 300px;
   border-color: $btn-border-color;
   border-radius: 10px;
   color: $btn-border-color;

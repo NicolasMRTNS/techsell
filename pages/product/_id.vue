@@ -22,6 +22,7 @@
         </fieldset>
       </article>
     </section>
+    <button class="btn-default border-color">Ajouter au panier</button>
   </main>
 </template>
 
@@ -68,6 +69,12 @@ article {
 }
 p {
   color: #000;
+}
+button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 220px;
 }
 
 // Responsive

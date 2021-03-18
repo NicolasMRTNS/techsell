@@ -9,13 +9,15 @@
         type="password"
         placeholder="Confirmation mot de passe"
       />
-      <button id="submitButton" type="submit" class="btn-default">
+      <button id="submitButton" type="submit" class="btn-default border-color">
         Inscription
       </button>
     </form>
     <aside class="form-aside">
       <h2>Déjà client ?</h2>
-      <nuxt-link to="/login" class="btn-default">Connexion</nuxt-link>
+      <nuxt-link to="/login" class="btn-default border-color"
+        >Connexion</nuxt-link
+      >
     </aside>
   </main>
 </template>

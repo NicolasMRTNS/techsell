@@ -8,14 +8,20 @@
       />
     </aside>
     <section class="items">
-      <article v-for="product in filteredOption" :key="product.id">
+      <article
+        v-for="product in filteredOption"
+        :key="product.id"
+        class="border-color"
+      >
         <img :src="product.image" :alt="product.description" />
         <div class="text-item">
           <div class="name-and-price">
             <p>{{ product.name }}</p>
             <p class="color-primary">{{ product.price }} €</p>
           </div>
-          <nuxt-link :to="`/product/${product.id}`" class="btn-item"
+          <nuxt-link
+            :to="`/product/${product.id}`"
+            class="btn-item border-color"
             >Voir l'article</nuxt-link
           >
         </div>
@@ -54,8 +60,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/variables.scss';
-
 aside {
   display: flex;
   margin: 1rem 0;
@@ -73,7 +77,6 @@ section {
   flex-wrap: wrap;
 }
 article {
-  border: 2px solid $btn-border-color;
   border-radius: 10px;
   width: max-content;
   margin: 2rem;

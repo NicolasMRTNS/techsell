@@ -12,8 +12,6 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/variables.scss';
-
 .masthead {
   width: 100%;
   height: 80vh;

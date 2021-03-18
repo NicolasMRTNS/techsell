@@ -28,7 +28,7 @@
       ></textarea>
       <input type="file" required @change="previewFile" />
       <img v-if="productImage" :src="productImage" :alt="productDescription" />
-      <button type="submit" class="btn-default">
+      <button type="submit" class="btn-default border-color">
         Mettre mon article en ligne
       </button>
     </form>

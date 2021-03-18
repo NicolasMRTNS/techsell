@@ -2,8 +2,12 @@
   <nav>
     <section class="container">
       <div class="div-link">
-        <nuxt-link to="/buy" class="links text-links">Acheter</nuxt-link>
-        <nuxt-link to="/sell" class="links text-links">Vendre</nuxt-link>
+        <nuxt-link to="/buy" class="links text-links color-primary"
+          >Acheter</nuxt-link
+        >
+        <nuxt-link to="/sell" class="links text-links color-primary"
+          >Vendre</nuxt-link
+        >
       </div>
       <div class="brand-div">
         <nuxt-link exact to="/">
@@ -12,10 +16,10 @@
       </div>
       <div class="icons">
         <nuxt-link to="/signin">
-          <span class="material-icons links">account_circle</span>
+          <span class="material-icons links color-primary">account_circle</span>
         </nuxt-link>
         <nuxt-link to="/cart">
-          <span class="material-icons links">shopping_cart</span>
+          <span class="material-icons links color-primary">shopping_cart</span>
         </nuxt-link>
       </div>
     </section>
@@ -27,9 +31,6 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-// Import for variables
-@import '~/assets/variables.scss';
-
 nav {
   background-color: #fff;
 }
@@ -50,7 +51,6 @@ section {
 }
 .links {
   margin: 0 0.5rem;
-  color: $primary;
 }
 .text-links {
   font-size: 1.3rem;

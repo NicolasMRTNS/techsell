@@ -4,13 +4,15 @@
     <form class="form-body">
       <input id="email" type="email" placeholder="Email" />
       <input id="password" type="password" placeholder="Mot de passe" />
-      <button id="submitButton" type="submit" class="btn-default">
+      <button id="submitButton" type="submit" class="btn-default border-color">
         Connexion
       </button>
     </form>
     <aside class="form-aside">
       <h2>Pas encore client ?</h2>
-      <nuxt-link to="/signin" class="btn-default">Inscription</nuxt-link>
+      <nuxt-link to="/signin" class="btn-default border-color"
+        >Inscription</nuxt-link
+      >
     </aside>
   </main>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="color-primary">
     <p>
       Réalisé par
       <a

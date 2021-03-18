@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <article>
+    <article class="border-color">
       <p>
         Tech Sell est la plateforme de référence si vous souhaitez vendre vos
         produits tech ou en acheter de nouveaux. L’achat et la vente se font
@@ -10,8 +10,8 @@
     </article>
     <aside>
       <p>Je souhaite</p>
-      <nuxt-link to="/buy" class="btn-default">Acheter</nuxt-link>
-      <nuxt-link to="/sell" class="btn-default">Vendre</nuxt-link>
+      <nuxt-link to="/buy" class="btn-default border-color">Acheter</nuxt-link>
+      <nuxt-link to="/sell" class="btn-default border-color">Vendre</nuxt-link>
     </aside>
   </div>
 </template>
@@ -21,11 +21,8 @@ export default {}
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/variables.scss';
-
 article {
   background: white;
-  border: 2px solid $btn-border-color;
   text-align: center;
   border-radius: 10px;
 }
