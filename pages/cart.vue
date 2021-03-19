@@ -9,13 +9,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Xiamio Redmi Note 8T</td>
-          <td>500 €</td>
+        <tr v-for="item in cart" :key="item.id">
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }} €</td>
         </tr>
         <tr class="color-primary">
           <td>Prix total</td>
-          <td>500 €</td>
+          <td>{{ totalPrice }} €</td>
         </tr>
       </tbody>
     </table>
@@ -24,7 +24,14 @@
 </template>
 
 <script>
-export default {}
+import { mapState, mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState(['cart']),
+    ...mapGetters(['totalPrice']),
+  },
+}
 </script>
 
 <style lang="scss" scoped>

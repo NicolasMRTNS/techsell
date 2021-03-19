@@ -40,19 +40,25 @@ export const state = () => ({
       image: 'https://picsum.photos/250/200',
     },
   ],
+  cart: [],
 })
 
-// export const getters = {
-//   getterValue: (state) => {
-//     return state.value
-//   },
-// }
+export const getters = {
+  totalPrice: (state) => {
+    if (!state.cart.length) return 0
+    return state.cart.reduce((ac, next) => ac + +next.price, 0)
+  },
+  numberOfItemsInCart: (state) => {
+    if (!state.cart.length) return 0
+    return state.cart.length
+  },
+}
 
-// export const mutations = {
-//   updateValue: (state, payload) => {
-//     state.value = payload
-//   },
-// }
+export const mutations = {
+  addToCart: (state, formOutput) => {
+    state.cart.push(formOutput)
+  },
+}
 
 // export const actions = {
 //   updateActionValue({ commit }) {

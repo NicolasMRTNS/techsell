@@ -19,6 +19,9 @@
           <span class="material-icons links color-primary">account_circle</span>
         </nuxt-link>
         <nuxt-link to="/cart">
+          <span v-if="numberOfItemsInCart > 0" class="smallnum border-color">{{
+            numberOfItemsInCart
+          }}</span>
           <span class="material-icons links color-primary">shopping_cart</span>
         </nuxt-link>
       </div>
@@ -27,7 +30,13 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters(['numberOfItemsInCart']),
+  },
+}
 </script>
 
 <style lang="scss" scoped>

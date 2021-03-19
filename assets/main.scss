@@ -177,3 +177,27 @@ table th {
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
+
+// Small num for number of items  in the cart
+.smallnum {
+  position: absolute;
+  border-radius: 1000px;
+  background: white;
+  color: $btn-border-color;
+  top: 2px;
+  right: 9%;
+  width: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 700px) {
+  .smallnum {
+    right: 0;
+  }
+}

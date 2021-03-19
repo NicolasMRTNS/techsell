@@ -22,7 +22,9 @@
         </fieldset>
       </article>
     </section>
-    <button class="btn-default border-color">Ajouter au panier</button>
+    <button class="btn-default border-color" @click="addToCart">
+      Ajouter au panier
+    </button>
   </main>
 </template>
 
@@ -33,6 +35,7 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      cartSubmitted: false,
     }
   },
   computed: {
@@ -47,6 +50,17 @@ export default {
         }
       }
       return result
+    },
+  },
+  methods: {
+    addToCart() {
+      const formOutput = {
+        id: this.currentProduct.id,
+        name: this.currentProduct.name,
+        price: this.currentProduct.price,
+      }
+      this.cartSubmitted = true
+      this.$store.commit('addToCart', formOutput)
     },
   },
 }
