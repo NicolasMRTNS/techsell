@@ -19,9 +19,11 @@
           <span class="material-icons links color-primary">account_circle</span>
         </nuxt-link>
         <nuxt-link to="/cart">
-          <span v-if="numberOfItemsInCart > 0" class="smallnum border-color">{{
-            numberOfItemsInCart
-          }}</span>
+          <span
+            v-if="numberOfItemsInCart > 0"
+            class="smallnum border-color color-primary"
+            >{{ numberOfItemsInCart }}</span
+          >
           <span class="material-icons links color-primary">shopping_cart</span>
         </nuxt-link>
       </div>

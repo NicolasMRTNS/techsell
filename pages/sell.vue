@@ -28,20 +28,25 @@
       ></textarea>
       <input type="file" required @change="previewFile" />
       <img v-if="productImage" :src="productImage" :alt="productDescription" />
-      <button type="submit" class="btn-default border-color">
+      <button v-if="!productSubmitted" class="btn-default border-color">
         Mettre mon article en ligne
       </button>
+      <AppToast v-if="productSubmitted" class="toast"
+        >Votre article a été mis en vente</AppToast
+      >
     </form>
   </main>
 </template>
 
 <script>
 import AppSelect from '@/components/AppSelect.vue'
+import AppToast from '@/components/AppToast.vue'
 import { mapState } from 'vuex'
 
 export default {
   components: {
     AppSelect,
+    AppToast,
   },
   data() {
     return {
@@ -50,6 +55,7 @@ export default {
       productCategory: '',
       productDescription: '',
       productImage: '',
+      productSubmitted: false,
     }
   },
   computed: {

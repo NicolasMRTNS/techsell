@@ -183,7 +183,6 @@ table th {
   position: absolute;
   border-radius: 1000px;
   background: white;
-  color: $btn-border-color;
   top: 2px;
   right: 9%;
   width: 20px;
@@ -200,4 +199,16 @@ table th {
   .smallnum {
     right: 0;
   }
+}
+
+// Toast
+.toast {
+  background: #06a837;
+  color: white;
+  border-radius: 10px;
+  padding: 12px 24px;
+  text-align: center;
+  margin: 1rem auto;
+  width: 310px;
+  font-size: 1.1rem;
 }

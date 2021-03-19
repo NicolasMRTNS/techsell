@@ -22,16 +22,27 @@
         </fieldset>
       </article>
     </section>
-    <button class="btn-default border-color" @click="addToCart">
+    <button
+      v-if="!cartSubmitted"
+      class="btn-default border-color"
+      @click="addToCart"
+    >
       Ajouter au panier
     </button>
+    <AppToast v-if="cartSubmitted" class="toast"
+      >Article ajouté au panier avec succès</AppToast
+    >
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import AppToast from '~/components/AppToast.vue'
 
 export default {
+  components: {
+    AppToast,
+  },
   data() {
     return {
       id: this.$route.params.id,
