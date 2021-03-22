@@ -211,4 +211,8 @@ table th {
   margin: 1rem auto;
   width: 310px;
   font-size: 1.1rem;
+  &__fail {
+    @extend .toast;
+    background: #a8060e;
+  }
 }

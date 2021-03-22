@@ -5,32 +5,39 @@
     </h3>
     <form>
       <input
-        v-model="productName"
+        v-model="$v.productName.$model"
         placeholder="Nom du produit"
         type="text"
-        required
       />
       <input
-        v-model="productPrice"
+        v-model="$v.productPrice.$model"
         placeholder="Prix (en € sans virgule)"
         type="number"
-        required
       />
       <AppSelect
         :optionsarray="selectOptions"
-        @change="productCategory = $event"
+        @change="$v.productCategory.$model = $event"
       />
       <textarea
-        v-model="productDescription"
+        v-model="$v.productDescription.$model"
         placeholder="Description"
         rows="6"
-        required
       ></textarea>
-      <input type="file" required @change="previewFile" />
+      <input type="file" @change="previewFile" />
       <img v-if="productImage" :src="productImage" :alt="productDescription" />
-      <button v-if="!productSubmitted" class="btn-default border-color">
+      <button
+        v-if="!productSubmitted"
+        class="btn-default border-color"
+        @click.prevent="productOnline"
+      >
         Mettre mon article en ligne
       </button>
+      <!--If there are errors in the form-->
+      <AppToast v-if="errors" class="toast__fail"
+        >Erreur(s) dans le formulaire, votre article ne peut pas être mis en
+        ligne. Tous les champs sont obligatoires.</AppToast
+      >
+      <!--If the form is good to go-->
       <AppToast v-if="productSubmitted" class="toast"
         >Votre article a été mis en vente</AppToast
       >
@@ -42,6 +49,7 @@
 import AppSelect from '@/components/AppSelect.vue'
 import AppToast from '@/components/AppToast.vue'
 import { mapState } from 'vuex'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   components: {
@@ -56,14 +64,53 @@ export default {
       productDescription: '',
       productImage: '',
       productSubmitted: false,
+      errors: false,
     }
+  },
+  // Vuelidate
+  validations: {
+    productName: {
+      required,
+    },
+    productPrice: {
+      required,
+    },
+    productCategory: {
+      required,
+    },
+    productDescription: {
+      required,
+    },
+    productImage: {
+      required,
+    },
   },
   computed: {
     ...mapState(['productData', 'selectOptions']),
   },
   methods: {
     previewFile(event) {
-      this.productImage = event.target.files[0]
+      this.$v.productImage.$model = event.target.files[0]
+    },
+    productOnline() {
+      // Check if there are any errors in the form
+      const nameError = this.$v.productName.$invalid
+      const priceError = this.$v.productPrice.$invalid
+      const categoryError = this.$v.productCategory.$invalid
+      const descriptionError = this.$v.productDescription.$invalid
+      const imageError = this.$v.productImage.$invalid
+      if (
+        nameError ||
+        priceError ||
+        categoryError ||
+        descriptionError ||
+        imageError
+      ) {
+        this.errors = true
+      } else {
+        this.errors = false
+        this.productSubmitted = true
+      }
     },
   },
 }
