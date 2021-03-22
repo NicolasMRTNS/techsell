@@ -58,6 +58,9 @@ export const mutations = {
   addToCart: (state, formOutput) => {
     state.cart.push(formOutput)
   },
+  emptyCart: (state) => {
+    state.cart = []
+  },
 }
 
 // export const actions = {

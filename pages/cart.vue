@@ -19,17 +19,41 @@
         </tr>
       </tbody>
     </table>
-    <button class="btn-default border-color">Valider mon panier</button>
+    <button
+      v-if="!cartHasBeenSubmitted"
+      class="btn-default border-color"
+      @click.prevent="cartSubmitted"
+    >
+      Valider mon panier
+    </button>
+    <AppToast v-if="cartHasBeenSubmitted" class="toast"
+      >Panier validé, merci pour votre achat sur Tech Sell !</AppToast
+    >
   </main>
 </template>
 
 <script>
+import AppToast from '@/components/AppToast.vue'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
+  components: {
+    AppToast,
+  },
+  data() {
+    return {
+      cartHasBeenSubmitted: false,
+    }
+  },
   computed: {
     ...mapState(['cart']),
     ...mapGetters(['totalPrice']),
+  },
+  methods: {
+    cartSubmitted() {
+      this.cartHasBeenSubmitted = true
+      this.$store.commit('emptyCart')
+    },
   },
 }
 </script>
