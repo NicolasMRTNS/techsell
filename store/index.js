@@ -6,40 +6,7 @@ export const state = () => ({
     'Ordinateur Portable',
     'Ordinateur MacOS',
   ],
-  productData: [
-    {
-      id: '2153248944598',
-      name: 'Xiaomi Redmi Note 8T',
-      price: 500,
-      category: 'Portable Android',
-      description: "Un PC vendu comme neuf, n'a quasiment jamais été utilisé.",
-      image: 'https://picsum.photos/250/200',
-    },
-    {
-      id: '54542318415',
-      name: 'Ordinateur portable HP',
-      price: 1500,
-      category: 'Ordinateur Portable',
-      description: "Un PC vendu comme neuf, n'a quasiment jamais été utilisé.",
-      image: 'https://picsum.photos/250/200',
-    },
-    {
-      id: '5498454542318415',
-      name: 'MacBook Pro 17 pouces',
-      price: 2000,
-      category: 'Ordinateur MacOS',
-      description: "Un PC vendu comme neuf, n'a quasiment jamais été utilisé.",
-      image: 'https://picsum.photos/250/200',
-    },
-    {
-      id: '778742318415',
-      name: 'iPhone X Max',
-      price: 400,
-      category: 'Portable Apple',
-      description: "Un PC vendu comme neuf, n'a quasiment jamais été utilisé.",
-      image: 'https://picsum.photos/250/200',
-    },
-  ],
+  productData: [],
   cart: [],
 })
 
@@ -55,6 +22,9 @@ export const getters = {
 }
 
 export const mutations = {
+  updateProductData: (state, data) => {
+    state.productData = data
+  },
   addToCart: (state, formOutput) => {
     state.cart.push(formOutput)
   },
@@ -63,8 +33,22 @@ export const mutations = {
   },
 }
 
-// export const actions = {
-//   updateActionValue({ commit }) {
-//     commit('updateValue', payload)
-//   },
-// }
+export const actions = {
+  async getProductData({ state, commit }) {
+    if (state.productData.length) return
+    try {
+      await fetch('http://localhost:4200/api/products', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          commit('updateProductData', data)
+        })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error)
+    }
+  },
+}
