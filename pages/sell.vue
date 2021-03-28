@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       productName: '',
-      productPrice: '',
+      productPrice: 0,
       productCategory: '',
       productDescription: '',
       productImage: '',
@@ -108,8 +108,16 @@ export default {
       ) {
         this.errors = true
       } else {
+        const productToPushInDatabase = {
+          name: this.productName,
+          price: this.productPrice,
+          desccription: this.productDescription,
+          category: this.productCategory,
+          image: this.productImage,
+        }
         this.errors = false
         this.productSubmitted = true
+        this.$store.dispatch('pushToDatabase', productToPushInDatabase)
       }
     },
   },

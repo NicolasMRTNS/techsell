@@ -37,18 +37,20 @@ export const actions = {
   async getProductData({ state, commit }) {
     if (state.productData.length) return
     try {
-      await fetch('http://localhost:4200/api/products', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      await this.$axios.$get('/api/products').then((data) => {
+        commit('updateProductData', data)
       })
-        .then((response) => response.json())
-        .then((data) => {
-          commit('updateProductData', data)
-        })
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error)
     }
+  },
+  pushToDatabase({ productToPushInDatabase }) {
+    this.$axios
+      .$post('/api/products', productToPushInDatabase)
+      // eslint-disable-next-line no-console
+      .then((response) => console.log(response))
+      // eslint-disable-next-line no-console
+      .catch((error) => console.error(error))
   },
 }
