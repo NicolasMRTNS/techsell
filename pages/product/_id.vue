@@ -55,7 +55,7 @@ export default {
     currentProduct() {
       let result
       for (let i = 0; i < this.productData.length; i++) {
-        if (this.productData[i].id === this.id) {
+        if (this.productData[i]._id === this.id) {
           result = this.productData[i]
           break
         }
@@ -66,7 +66,7 @@ export default {
   methods: {
     addToCart() {
       const formOutput = {
-        id: this.currentProduct.id,
+        id: this.currentProduct._id,
         name: this.currentProduct.name,
         price: this.currentProduct.price,
       }

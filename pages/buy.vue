@@ -10,7 +10,7 @@
     <section class="items">
       <article
         v-for="product in filteredOption"
-        :key="product.id"
+        :key="product._id"
         class="border-color"
       >
         <img :src="product.image" :alt="product.description" />
@@ -20,7 +20,7 @@
             <p class="color-primary">{{ product.price }} €</p>
           </div>
           <nuxt-link
-            :to="`/product/${product.id}`"
+            :to="`/product/${product._id}`"
             class="btn-item border-color"
             >Voir l'article</nuxt-link
           >
