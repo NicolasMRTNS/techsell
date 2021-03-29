@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     previewFile(event) {
-      this.$v.productImage.$model = event.target.files[0]
+      this.$v.productImage.$model = event.target.files[0].name
     },
     productOnline() {
       // Check if there are any errors in the form
@@ -111,13 +111,14 @@ export default {
         const productToPushInDatabase = {
           name: this.productName,
           price: this.productPrice,
-          desccription: this.productDescription,
+          description: this.productDescription,
           category: this.productCategory,
           image: this.productImage,
         }
         this.errors = false
         this.productSubmitted = true
-        this.$store.dispatch('pushToDatabase', productToPushInDatabase)
+        this.$store.commit('newProductToMutate', productToPushInDatabase)
+        this.$store.dispatch('pushToDatabase')
       }
     },
   },

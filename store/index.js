@@ -8,6 +8,7 @@ export const state = () => ({
   ],
   productData: [],
   cart: [],
+  newProduct: [],
 })
 
 export const getters = {
@@ -31,6 +32,9 @@ export const mutations = {
   emptyCart: (state) => {
     state.cart = []
   },
+  newProductToMutate: (state, productToPushInDatabase) => {
+    state.newProduct.push(productToPushInDatabase)
+  },
 }
 
 export const actions = {
@@ -45,9 +49,9 @@ export const actions = {
       console.error(error)
     }
   },
-  pushToDatabase({ productToPushInDatabase }) {
-    this.$axios
-      .$post('/api/products', productToPushInDatabase)
+  async pushToDatabase({ state }) {
+    await this.$axios
+      .$post('/api/products', state.newProduct)
       // eslint-disable-next-line no-console
       .then((response) => console.log(response))
       // eslint-disable-next-line no-console
