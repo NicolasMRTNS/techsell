@@ -9,6 +9,8 @@ export const state = () => ({
   productData: [],
   cart: [],
   newProduct: [],
+  newUser: [],
+  isConnected: false,
 })
 
 export const getters = {
@@ -35,6 +37,12 @@ export const mutations = {
   newProductToMutate: (state, productToPushInDatabase) => {
     state.newProduct.push(productToPushInDatabase)
   },
+  getNewUserInfo: (state, infoOutput) => {
+    state.newUser.push(infoOutput)
+  },
+  connectUser: (state) => {
+    state.isConnected = true
+  },
 }
 
 export const actions = {
@@ -56,5 +64,12 @@ export const actions = {
       .then((response) => console.log(response))
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error))
+  },
+  async registerNewUser({ state, commit }) {
+    await this.$axios
+      .$post('/api/auth/signup', state.newUser)
+      .then(() => commit('connectUser'))
+      // eslint-disable-next-line no-console
+      .catch((error) => console.log(error))
   },
 }
