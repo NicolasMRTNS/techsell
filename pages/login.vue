@@ -2,9 +2,9 @@
   <main class="container">
     <h1 class="form-header">Formulaire de connexion</h1>
     <form class="form-body">
-      <input id="email" type="email" placeholder="Email" />
-      <input id="password" type="password" placeholder="Mot de passe" />
-      <button id="submitButton" type="submit" class="btn-default border-color">
+      <input v-model="email" type="email" placeholder="Email" />
+      <input v-model="password" type="password" placeholder="Mot de passe" />
+      <button class="btn-default border-color" @click.prevent="login">
         Connexion
       </button>
     </form>
@@ -18,7 +18,24 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    login() {
+      const loginInfo = {
+        email: this.email,
+        password: this.password,
+      }
+      this.$store.commit('loginUserInfo', loginInfo)
+      this.$store.dispatch('loginUser')
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>

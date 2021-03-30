@@ -8,6 +8,7 @@ export const state = () => ({
   ],
   productData: [],
   cart: [],
+  user: [],
   newProduct: [],
   newUser: [],
   isConnected: false,
@@ -40,8 +41,12 @@ export const mutations = {
   getNewUserInfo: (state, infoOutput) => {
     state.newUser.push(infoOutput)
   },
+  loginUserInfo: (state, loginInfo) => {
+    state.user.push(loginInfo)
+  },
   connectUser: (state) => {
     state.isConnected = true
+    state.newUser = []
   },
 }
 
@@ -49,7 +54,7 @@ export const actions = {
   async getProductData({ state, commit }) {
     if (state.productData.length) return
     try {
-      await this.$axios.$get('/api/products').then((data) => {
+      await this.$axios.$get('/products').then((data) => {
         commit('updateProductData', data)
       })
     } catch (error) {
@@ -59,15 +64,22 @@ export const actions = {
   },
   async pushToDatabase({ state }) {
     await this.$axios
-      .$post('/api/products', state.newProduct)
+      .$post('/products', state.newProduct)
       // eslint-disable-next-line no-console
       .then((response) => console.log(response))
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error))
   },
+  async loginUser({ state, commit }) {
+    await this.$axios
+      .$post('/auth/login', state.user)
+      .then(() => commit('connectUser'))
+      // eslint-disable-next-line no-console
+      .catch((error) => console.log(error))
+  },
   async registerNewUser({ state, commit }) {
     await this.$axios
-      .$post('/api/auth/signup', state.newUser)
+      .$post('/auth/signup', state.newUser)
       .then(() => commit('connectUser'))
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error))
