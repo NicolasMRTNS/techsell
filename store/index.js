@@ -9,7 +9,7 @@ export const state = () => ({
   productData: [],
   cart: [],
   user: [],
-  newProduct: [],
+  newProduct: '',
   newUser: [],
   isConnected: false,
 })
@@ -36,7 +36,10 @@ export const mutations = {
     state.cart = []
   },
   newProductToMutate: (state, productToPushInDatabase) => {
-    state.newProduct.push(productToPushInDatabase)
+    state.newProduct = productToPushInDatabase
+  },
+  resetProduc: (state) => {
+    state.newProduct = ''
   },
   getNewUserInfo: (state, infoOutput) => {
     state.newUser.push(infoOutput)
@@ -47,6 +50,7 @@ export const mutations = {
   connectUser: (state) => {
     state.isConnected = true
     state.newUser = []
+    state.user = []
   },
 }
 
@@ -54,7 +58,7 @@ export const actions = {
   async getProductData({ state, commit }) {
     if (state.productData.length) return
     try {
-      await this.$axios.$get('/products').then((data) => {
+      await this.$axios.$get('/api/products').then((data) => {
         commit('updateProductData', data)
       })
     } catch (error) {
@@ -62,24 +66,28 @@ export const actions = {
       console.error(error)
     }
   },
-  async pushToDatabase({ state }) {
+  async pushToDatabase({ state, dispatch, commit }) {
     await this.$axios
-      .$post('/products', state.newProduct)
-      // eslint-disable-next-line no-console
-      .then((response) => console.log(response))
+      .$post('/api/products', state.newProduct, {
+        headers: { enctype: 'multipart/form-data' },
+      })
+      .then(() => {
+        dispatch('getProductData')
+        commit('resetProduct')
+      })
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error))
   },
   async loginUser({ state, commit }) {
     await this.$axios
-      .$post('/auth/login', state.user)
+      .$post('/api/auth/login', state.user)
       .then(() => commit('connectUser'))
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error))
   },
   async registerNewUser({ state, commit }) {
     await this.$axios
-      .$post('/auth/signup', state.newUser)
+      .$post('/api/auth/signup', state.newUser)
       .then(() => commit('connectUser'))
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error))

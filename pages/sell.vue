@@ -23,7 +23,7 @@
         placeholder="Description"
         rows="6"
       ></textarea>
-      <input type="file" @change="previewFile" />
+      <input type="file" name="imageUpload" @change="previewFile" />
       <img v-if="productImage" :src="productImage" :alt="productDescription" />
       <button
         v-if="!productSubmitted"
@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     previewFile(event) {
-      this.$v.productImage.$model = event.target.files[0].name
+      this.$v.productImage.$model = event.target.files[0]
     },
     productOnline() {
       // Check if there are any errors in the form
@@ -108,13 +108,12 @@ export default {
       ) {
         this.errors = true
       } else {
-        const productToPushInDatabase = {
-          name: this.productName,
-          price: this.productPrice,
-          description: this.productDescription,
-          category: this.productCategory,
-          image: this.productImage,
-        }
+        const productToPushInDatabase = new FormData()
+        productToPushInDatabase.append('name', this.productName)
+        productToPushInDatabase.append('price', this.productPrice)
+        productToPushInDatabase.append('description', this.productDescription)
+        productToPushInDatabase.append('category', this.productCategory)
+        productToPushInDatabase.append('image', this.productImage)
         this.errors = false
         this.productSubmitted = true
         this.$store.commit('newProductToMutate', productToPushInDatabase)
