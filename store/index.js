@@ -13,6 +13,8 @@ export const state = () => ({
   newUser: [],
   isConnected: false,
   userId: '',
+  userEmail: '',
+  productToDelete: '',
 })
 
 export const getters = {
@@ -26,6 +28,9 @@ export const getters = {
   },
   getUserId: (state) => {
     return state.userId
+  },
+  getUserEmail: (state) => {
+    return state.userEmail
   },
 }
 
@@ -45,11 +50,15 @@ export const mutations = {
   resetProduct: (state) => {
     state.newProduct = ''
   },
+  deletedProduct: (state, productToDelete) => {
+    state.productToDelete = productToDelete
+  },
   getNewUserInfo: (state, infoOutput) => {
     state.newUser.push(infoOutput)
   },
   loginUserInfo: (state, loginInfo) => {
     state.user.push(loginInfo)
+    state.userEmail = loginInfo.email
   },
   connectUser: (state, response) => {
     state.isConnected = true
@@ -60,6 +69,7 @@ export const mutations = {
 }
 
 export const actions = {
+  // Get all products
   async getProductData({ commit }) {
     await this.$axios
       .$get('/api/products')
@@ -69,6 +79,7 @@ export const actions = {
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error))
   },
+  // Post a product
   async pushToDatabase({ state, dispatch, commit }) {
     await this.$axios
       .$post('/api/products', state.newProduct, {
@@ -83,6 +94,16 @@ export const actions = {
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error))
   },
+  // Delete a product
+  async deleteProductFromDatabase({ state }) {
+    await this.$axios
+      .$delete(`/api/products/${state.productToDelete}`)
+      // eslint-disable-next-line no-console
+      .then(() => console.log('Produit supprimé'))
+      // eslint-disable-next-line no-console
+      .catch((error) => console.log(error))
+  },
+  // User login
   async loginUser({ state, commit }) {
     await this.$axios
       .$post('/api/auth/login', state.user)
@@ -90,6 +111,7 @@ export const actions = {
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error))
   },
+  // Register new user
   async registerNewUser({ state, commit }) {
     await this.$axios
       .$post('/api/auth/signup', state.newUser)

@@ -1,5 +1,6 @@
 <template>
-  <main class="container">
+  <AppUserConnected v-if="isConnected" />
+  <main v-else class="container">
     <h1 class="form-header">Formulaire de connexion</h1>
     <form class="form-body">
       <input v-model="email" type="email" placeholder="Email" />
@@ -18,12 +19,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import AppUserConnected from '@/components/AppUserConnected.vue'
+
 export default {
+  components: {
+    AppUserConnected,
+  },
   data() {
     return {
       email: '',
       password: '',
     }
+  },
+  computed: {
+    ...mapState(['isConnected']),
   },
   methods: {
     login() {

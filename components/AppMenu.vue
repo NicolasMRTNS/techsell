@@ -15,7 +15,7 @@
         </nuxt-link>
       </div>
       <div class="icons">
-        <nuxt-link to="/signin">
+        <nuxt-link to="/login">
           <span class="material-icons links color-primary">account_circle</span>
         </nuxt-link>
         <nuxt-link to="/cart">
@@ -96,8 +96,7 @@ section {
   }
   .text-links {
     font-size: 0.9rem;
-    margin: 0;
-    margin-bottom: 0.3rem;
+    margin: 0 0 0.3rem 0;
     font-weight: 400;
   }
   .icons {

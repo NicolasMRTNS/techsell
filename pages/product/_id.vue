@@ -29,6 +29,13 @@
     >
       Ajouter au panier
     </button>
+    <button
+      v-if="currentProduct.userId === userId"
+      class="btn-danger"
+      @click="deleteProduct"
+    >
+      Supprimer le produit
+    </button>
     <AppToast v-if="cartSubmitted" class="toast"
       >Article ajouté au panier avec succès</AppToast
     >
@@ -50,7 +57,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['productData']),
+    ...mapState(['productData', 'userId']),
     // To get the current product, we use a for loop so we can break when the product is found
     currentProduct() {
       let result
@@ -72,6 +79,11 @@ export default {
       }
       this.cartSubmitted = true
       this.$store.commit('addToCart', formOutput)
+    },
+    deleteProduct() {
+      const productToDelete = this.currentProduct._id
+      this.$store.commit('deletedProduct', productToDelete)
+      this.$store.dispatch('deleteProductFromDatabase')
     },
   },
 }
