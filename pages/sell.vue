@@ -48,7 +48,7 @@
 <script>
 import AppSelect from '@/components/AppSelect.vue'
 import AppToast from '@/components/AppToast.vue'
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
 
 export default {
@@ -87,6 +87,7 @@ export default {
   },
   computed: {
     ...mapState(['productData', 'selectOptions']),
+    ...mapGetters(['getUserId']),
   },
   methods: {
     previewFile(event) {
@@ -108,12 +109,14 @@ export default {
       ) {
         this.errors = true
       } else {
+        // Using a formData to handle post
         const productToPushInDatabase = new FormData()
         productToPushInDatabase.append('name', this.productName)
         productToPushInDatabase.append('price', this.productPrice)
         productToPushInDatabase.append('description', this.productDescription)
         productToPushInDatabase.append('category', this.productCategory)
         productToPushInDatabase.append('image', this.productImage)
+        productToPushInDatabase.append('userId', this.getUserId)
         this.errors = false
         this.productSubmitted = true
         this.$store.commit('newProductToMutate', productToPushInDatabase)

@@ -12,6 +12,7 @@ export const state = () => ({
   newProduct: '',
   newUser: [],
   isConnected: false,
+  userId: '',
 })
 
 export const getters = {
@@ -22,6 +23,9 @@ export const getters = {
   numberOfItemsInCart: (state) => {
     if (!state.cart.length) return 0
     return state.cart.length
+  },
+  getUserId: (state) => {
+    return state.userId
   },
 }
 
@@ -38,7 +42,7 @@ export const mutations = {
   newProductToMutate: (state, productToPushInDatabase) => {
     state.newProduct = productToPushInDatabase
   },
-  resetProduc: (state) => {
+  resetProduct: (state) => {
     state.newProduct = ''
   },
   getNewUserInfo: (state, infoOutput) => {
@@ -47,29 +51,30 @@ export const mutations = {
   loginUserInfo: (state, loginInfo) => {
     state.user.push(loginInfo)
   },
-  connectUser: (state) => {
+  connectUser: (state, response) => {
     state.isConnected = true
     state.newUser = []
     state.user = []
+    state.userId = response.userId
   },
 }
 
 export const actions = {
-  async getProductData({ state, commit }) {
-    if (state.productData.length) return
-    try {
-      await this.$axios.$get('/api/products').then((data) => {
+  async getProductData({ commit }) {
+    await this.$axios
+      .$get('/api/products')
+      .then((data) => {
         commit('updateProductData', data)
       })
-    } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error)
-    }
+      .catch((error) => console.error(error))
   },
   async pushToDatabase({ state, dispatch, commit }) {
     await this.$axios
       .$post('/api/products', state.newProduct, {
-        headers: { enctype: 'multipart/form-data' },
+        headers: {
+          enctype: 'multipart/form-data',
+        },
       })
       .then(() => {
         dispatch('getProductData')
@@ -81,7 +86,7 @@ export const actions = {
   async loginUser({ state, commit }) {
     await this.$axios
       .$post('/api/auth/login', state.user)
-      .then(() => commit('connectUser'))
+      .then((response) => commit('connectUser', response))
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error))
   },
