@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       productName: '',
-      productPrice: 0,
+      productPrice: '',
       productCategory: '',
       productDescription: '',
       productImage: '',

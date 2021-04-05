@@ -13,6 +13,7 @@ export const state = () => ({
   newUser: [],
   isConnected: false,
   userId: '',
+  token: '',
   userEmail: '',
   productToDelete: '',
 })
@@ -65,6 +66,7 @@ export const mutations = {
     state.newUser = []
     state.user = []
     state.userId = response.userId
+    state.token = response.token
   },
 }
 
@@ -85,6 +87,7 @@ export const actions = {
       .$post('/api/products', state.newProduct, {
         headers: {
           enctype: 'multipart/form-data',
+          authorization: state.token,
         },
       })
       .then(() => {
@@ -95,11 +98,10 @@ export const actions = {
       .catch((error) => console.error(error))
   },
   // Delete a product
-  async deleteProductFromDatabase({ state }) {
+  async deleteProductFromDatabase({ state, dispatch }) {
     await this.$axios
       .$delete(`/api/products/${state.productToDelete}`)
-      // eslint-disable-next-line no-console
-      .then(() => console.log('Produit supprimé'))
+      .then(() => dispatch('getProductData'))
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error))
   },

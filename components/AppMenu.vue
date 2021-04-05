@@ -16,7 +16,12 @@
       </div>
       <div class="icons">
         <nuxt-link to="/login">
-          <span class="material-icons links color-primary">account_circle</span>
+          <span v-if="isConnected" class="material-icons color-primary"
+            >done</span
+          >
+          <span v-else class="material-icons links color-primary"
+            >account_circle</span
+          >
         </nuxt-link>
         <nuxt-link to="/cart">
           <span
@@ -32,10 +37,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   computed: {
+    ...mapState(['isConnected']),
     ...mapGetters(['numberOfItemsInCart']),
   },
 }

@@ -29,13 +29,15 @@
     >
       Ajouter au panier
     </button>
-    <button
+    <nuxt-link
       v-if="currentProduct.userId === userId"
+      type="button"
+      to="/buy"
       class="btn-danger"
-      @click="deleteProduct"
+      @click.native="deleteProduct"
     >
       Supprimer le produit
-    </button>
+    </nuxt-link>
     <AppToast v-if="cartSubmitted" class="toast"
       >Article ajouté au panier avec succès</AppToast
     >
@@ -112,6 +114,12 @@ button {
   margin-right: auto;
   display: block;
   width: 220px;
+}
+
+a {
+  @extend button;
+  margin-top: 1rem;
+  border-color: #a8060e;
 }
 
 // Responsive
