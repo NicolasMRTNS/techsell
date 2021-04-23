@@ -8,6 +8,9 @@
       <button class="btn-default border-color" @click.prevent="login">
         Connexion
       </button>
+      <AppToast v-if="invalidLogin !== ''" class="toast__fail">{{
+        invalidLogin
+      }}</AppToast>
     </form>
     <aside class="form-aside">
       <h2>Pas encore client ?</h2>
@@ -21,10 +24,12 @@
 <script>
 import { mapState } from 'vuex'
 import AppUserConnected from '@/components/AppUserConnected.vue'
+import AppToast from '@/components/AppToast.vue'
 
 export default {
   components: {
     AppUserConnected,
+    AppToast,
   },
   data() {
     return {
@@ -33,7 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isConnected']),
+    ...mapState(['isConnected', 'invalidLogin']),
   },
   methods: {
     login() {

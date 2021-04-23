@@ -41,6 +41,14 @@
       <AppToast v-if="productSubmitted" class="toast"
         >Votre article a été mis en vente</AppToast
       >
+      <!--If error server side-->
+      <AppToast v-if="errorWhenPushing" class="toast__fail"
+        >Erreur serveur, merci de réessayer votre envoi. Si l'erreur persiste,
+        merci de
+        <a href="mailto:nicolas.martins@hotmail.fr"
+          >contacter l'équipe support</a
+        >.</AppToast
+      >
     </form>
   </main>
 </template>
@@ -86,7 +94,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(['productData', 'selectOptions']),
+    ...mapState(['productData', 'selectOptions', 'errorWhenPushing']),
     ...mapGetters(['getUserId']),
   },
   methods: {

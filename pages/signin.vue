@@ -17,7 +17,14 @@
         Inscription
       </button>
       <AppToast v-if="isConnected" class="toast"
-        >Inscription réussie, vous êtes maintenant connecté !</AppToast
+        >Inscription réussie !</AppToast
+      >
+      <AppToast v-if="errorWhenSignup" class="toast__fail"
+        >Erreur lors de l'inscription, veuillez rééssayer. Si l'erreur persiste,
+        merci de
+        <a href="mailto:nicolas.martins@hotmail.fr"
+          >contacter l'équipe support</a
+        >.</AppToast
       >
     </form>
     <aside v-if="!isConnected" class="form-aside">
@@ -46,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isConnected']),
+    ...mapState(['isConnected', 'errorWhenSignup']),
   },
   methods: {
     signupFunction() {

@@ -16,6 +16,9 @@ export const state = () => ({
   token: '',
   userEmail: '',
   productToDelete: '',
+  errorWhenPushing: false,
+  invalidLogin: '',
+  errorWhenSignup: false,
 })
 
 export const getters = {
@@ -50,6 +53,7 @@ export const mutations = {
   },
   resetProduct: (state) => {
     state.newProduct = ''
+    state.errorWhenPushing = false
   },
   deletedProduct: (state, productToDelete) => {
     state.productToDelete = productToDelete
@@ -60,13 +64,26 @@ export const mutations = {
   loginUserInfo: (state, loginInfo) => {
     state.user.push(loginInfo)
     state.userEmail = loginInfo.email
+    state.invalidLogin = ''
   },
   connectUser: (state, response) => {
+    state.errorWhenSignup = false
     state.isConnected = true
     state.newUser = []
     state.user = []
+    state.invalidLogin = ''
     state.userId = response.userId
     state.token = response.token
+  },
+  productError: (state) => {
+    state.errorWhenPushing = true
+  },
+  loginFailed: (state, error) => {
+    state.invalidLogin = error
+    state.user = []
+  },
+  signupError: (state) => {
+    state.errorWhenSignup = true
   },
 }
 
@@ -94,8 +111,7 @@ export const actions = {
         dispatch('getProductData')
         commit('resetProduct')
       })
-      // eslint-disable-next-line no-console
-      .catch((error) => console.error(error))
+      .catch(() => commit('productError'))
   },
   // Delete a product
   async deleteProductFromDatabase({ state, dispatch }) {
@@ -110,15 +126,16 @@ export const actions = {
     await this.$axios
       .$post('/api/auth/login', state.user)
       .then((response) => commit('connectUser', response))
-      // eslint-disable-next-line no-console
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        error = error.response.data.error
+        commit('loginFailed', error)
+      })
   },
   // Register new user
   async registerNewUser({ state, commit }) {
     await this.$axios
       .$post('/api/auth/signup', state.newUser)
       .then(() => commit('connectUser'))
-      // eslint-disable-next-line no-console
-      .catch((error) => console.log(error))
+      .catch(() => commit('signupError'))
   },
 }

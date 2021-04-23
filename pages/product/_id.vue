@@ -23,7 +23,7 @@
       </article>
     </section>
     <button
-      v-if="!cartSubmitted"
+      v-if="!cartSubmitted && currentProduct.userId !== userId"
       class="btn-default border-color"
       @click="addToCart"
     >
