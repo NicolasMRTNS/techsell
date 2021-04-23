@@ -5,7 +5,7 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'AppToast'
+}
 </script>
-
-<style lang="scss" scoped></style>

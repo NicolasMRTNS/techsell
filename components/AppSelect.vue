@@ -12,16 +12,17 @@
 
 <script>
 export default {
+  name: 'AppSelect',
   props: {
     select: {
       type: String,
-      default: 'Portable Android',
+      default: 'Portable Android'
     },
     optionsarray: {
       type: Array,
-      default: () => ['Portable Android'],
-    },
-  },
+      default: () => ['Portable Android']
+    }
+  }
 }
 </script>
 

@@ -62,7 +62,7 @@ import { required } from 'vuelidate/lib/validators'
 export default {
   components: {
     AppSelect,
-    AppToast,
+    AppToast
   },
   data() {
     return {
@@ -72,30 +72,30 @@ export default {
       productDescription: '',
       productImage: '',
       productSubmitted: false,
-      errors: false,
+      errors: false
     }
   },
   // Vuelidate
   validations: {
     productName: {
-      required,
+      required
     },
     productPrice: {
-      required,
+      required
     },
     productCategory: {
-      required,
+      required
     },
     productDescription: {
-      required,
+      required
     },
     productImage: {
-      required,
-    },
+      required
+    }
   },
   computed: {
     ...mapState(['productData', 'selectOptions', 'errorWhenPushing']),
-    ...mapGetters(['getUserId']),
+    ...mapGetters(['getUserId'])
   },
   methods: {
     previewFile(event) {
@@ -130,8 +130,8 @@ export default {
         this.$store.commit('newProductToMutate', productToPushInDatabase)
         this.$store.dispatch('pushToDatabase')
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

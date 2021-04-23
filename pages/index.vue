@@ -12,8 +12,8 @@ import AppPresentation from '@/components/AppPresentation.vue'
 export default {
   components: {
     AppHeader,
-    AppPresentation,
-  },
+    AppPresentation
+  }
 }
 </script>
 

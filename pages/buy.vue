@@ -40,11 +40,11 @@ import { mapState } from 'vuex'
 
 export default {
   components: {
-    AppSelect,
+    AppSelect
   },
   data() {
     return {
-      selectedOption: 'Portable Android',
+      selectedOption: 'Portable Android'
     }
   },
   computed: {
@@ -54,8 +54,8 @@ export default {
       return this.productData.filter((el) => {
         return el.category.includes(this.selectedOption)
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

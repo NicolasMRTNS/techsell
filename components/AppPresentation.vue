@@ -17,7 +17,9 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'AppPresentation'
+}
 </script>
 
 <style lang="scss" scoped>

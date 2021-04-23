@@ -4,7 +4,7 @@ export const state = () => ({
     'Portable Apple',
     'PC',
     'Ordinateur Portable',
-    'Ordinateur MacOS',
+    'Ordinateur MacOS'
   ],
   productData: [],
   cart: [],
@@ -18,7 +18,7 @@ export const state = () => ({
   productToDelete: '',
   errorWhenPushing: false,
   invalidLogin: '',
-  errorWhenSignup: false,
+  errorWhenSignup: false
 })
 
 export const getters = {
@@ -35,7 +35,7 @@ export const getters = {
   },
   getUserEmail: (state) => {
     return state.userEmail
-  },
+  }
 }
 
 export const mutations = {
@@ -84,7 +84,7 @@ export const mutations = {
   },
   signupError: (state) => {
     state.errorWhenSignup = true
-  },
+  }
 }
 
 export const actions = {
@@ -104,8 +104,8 @@ export const actions = {
       .$post('/api/products', state.newProduct, {
         headers: {
           enctype: 'multipart/form-data',
-          authorization: state.token,
-        },
+          authorization: state.token
+        }
       })
       .then(() => {
         dispatch('getProductData')
@@ -137,5 +137,5 @@ export const actions = {
       .$post('/api/auth/signup', state.newUser)
       .then(() => commit('connectUser'))
       .catch(() => commit('signupError'))
-  },
+  }
 }

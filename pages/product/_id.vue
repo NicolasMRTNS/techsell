@@ -50,12 +50,12 @@ import AppToast from '~/components/AppToast.vue'
 
 export default {
   components: {
-    AppToast,
+    AppToast
   },
   data() {
     return {
       id: this.$route.params.id,
-      cartSubmitted: false,
+      cartSubmitted: false
     }
   },
   computed: {
@@ -70,14 +70,14 @@ export default {
         }
       }
       return result
-    },
+    }
   },
   methods: {
     addToCart() {
       const formOutput = {
         id: this.currentProduct._id,
         name: this.currentProduct.name,
-        price: this.currentProduct.price,
+        price: this.currentProduct.price
       }
       this.cartSubmitted = true
       this.$store.commit('addToCart', formOutput)
@@ -86,8 +86,8 @@ export default {
       const productToDelete = this.currentProduct._id
       this.$store.commit('deletedProduct', productToDelete)
       this.$store.dispatch('deleteProductFromDatabase')
-    },
-  },
+    }
+  }
 }
 </script>
 

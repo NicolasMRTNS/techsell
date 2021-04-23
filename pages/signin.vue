@@ -42,18 +42,18 @@ import AppToast from '@/components/AppToast.vue'
 
 export default {
   components: {
-    AppToast,
+    AppToast
   },
   data() {
     return {
       email: '',
       password: '',
       confirmPassword: '',
-      passwordError: false,
+      passwordError: false
     }
   },
   computed: {
-    ...mapState(['isConnected', 'errorWhenSignup']),
+    ...mapState(['isConnected', 'errorWhenSignup'])
   },
   methods: {
     signupFunction() {
@@ -62,14 +62,12 @@ export default {
       } else {
         const infoOutput = {
           email: this.email,
-          password: this.password,
+          password: this.password
         }
         this.$store.commit('getNewUserInfo', infoOutput)
         this.$store.dispatch('registerNewUser')
       }
-    },
-  },
+    }
+  }
 }
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,5 +1,8 @@
 <template>
-  <main class="container">
+  <main v-if="cart.length === 0" class="container">
+    <AppEmptyCart />
+  </main>
+  <main v-else class="container">
     <h2 class="text-center">Récapitulatif de votre panier</h2>
     <table>
       <thead class="color-primary">
@@ -34,27 +37,29 @@
 
 <script>
 import AppToast from '@/components/AppToast.vue'
+import AppEmptyCart from '@/components/AppEmptyCart.vue'
 import { mapState, mapGetters } from 'vuex'
 
 export default {
   components: {
     AppToast,
+    AppEmptyCart
   },
   data() {
     return {
-      cartHasBeenSubmitted: false,
+      cartHasBeenSubmitted: false
     }
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['totalPrice']),
+    ...mapGetters(['totalPrice'])
   },
   methods: {
     cartSubmitted() {
       this.cartHasBeenSubmitted = true
       this.$store.commit('emptyCart')
-    },
-  },
+    }
+  }
 }
 </script>
 

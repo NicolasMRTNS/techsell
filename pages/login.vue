@@ -29,27 +29,27 @@ import AppToast from '@/components/AppToast.vue'
 export default {
   components: {
     AppUserConnected,
-    AppToast,
+    AppToast
   },
   data() {
     return {
       email: '',
-      password: '',
+      password: ''
     }
   },
   computed: {
-    ...mapState(['isConnected', 'invalidLogin']),
+    ...mapState(['isConnected', 'invalidLogin'])
   },
   methods: {
     login() {
       const loginInfo = {
         email: this.email,
-        password: this.password,
+        password: this.password
       }
       this.$store.commit('loginUserInfo', loginInfo)
       this.$store.dispatch('loginUser')
-    },
-  },
+    }
+  }
 }
 </script>
 

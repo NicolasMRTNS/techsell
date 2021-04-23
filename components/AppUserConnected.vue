@@ -10,9 +10,10 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'AppUserConnected',
   computed: {
-    ...mapGetters(['getUserEmail']),
-  },
+    ...mapGetters(['getUserEmail'])
+  }
 }
 </script>
 

@@ -40,10 +40,11 @@
 import { mapGetters, mapState } from 'vuex'
 
 export default {
+  name: 'AppMenu',
   computed: {
     ...mapState(['isConnected']),
-    ...mapGetters(['numberOfItemsInCart']),
-  },
+    ...mapGetters(['numberOfItemsInCart'])
+  }
 }
 </script>
 
