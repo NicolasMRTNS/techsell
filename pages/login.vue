@@ -3,8 +3,18 @@
   <main v-else class="container">
     <h1 class="form-header">Formulaire de connexion</h1>
     <form class="form-body">
-      <input v-model="email" type="email" placeholder="Email" />
-      <input v-model="password" type="password" placeholder="Mot de passe" />
+      <input
+        v-model="email"
+        type="email"
+        placeholder="Email"
+        autocomplete="on"
+      />
+      <input
+        v-model="password"
+        type="password"
+        placeholder="Mot de passe"
+        autocomplete="on"
+      />
       <button class="btn-default border-color" @click.prevent="login">
         Connexion
       </button>

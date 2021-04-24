@@ -45,7 +45,7 @@
       <AppToast v-if="errorWhenPushing" class="toast__fail"
         >Erreur serveur, merci de réessayer votre envoi. Si l'erreur persiste,
         merci de
-        <a href="mailto:nicolas.martins@hotmail.fr"
+        <a class="support-team-link" href="mailto:nicolas.martins@hotmail.fr"
           >contacter l'équipe support</a
         >.</AppToast
       >

@@ -1,5 +1,8 @@
 <template>
-  <main class="container">
+  <main v-if="newUserIsRegistered" class="container">
+    <AppSigninSuccessfull />
+  </main>
+  <main v-else class="container">
     <h1 class="form-header">Formulaire d'inscription</h1>
     <form class="form-body">
       <input v-model="email" type="email" placeholder="Email" />
@@ -9,25 +12,21 @@
         type="password"
         placeholder="Confirmation mot de passe"
       />
-      <button
-        v-if="!isConnected"
-        class="btn-default border-color"
-        @click.prevent="signupFunction"
-      >
+      <button class="btn-default border-color" @click.prevent="signupFunction">
         Inscription
       </button>
-      <AppToast v-if="isConnected" class="toast"
-        >Inscription réussie !</AppToast
+      <AppToast v-if="passwordError" class="toast__fail"
+        >Les mots de passes ne sont pas identiques</AppToast
       >
-      <AppToast v-if="errorWhenSignup" class="toast__fail"
+      <AppToast v-if="errorWhenSignup && !passwordError" class="toast__fail"
         >Erreur lors de l'inscription, veuillez rééssayer. Si l'erreur persiste,
         merci de
-        <a href="mailto:nicolas.martins@hotmail.fr"
+        <a class="support-team-link" href="mailto:nicolas.martins@hotmail.fr"
           >contacter l'équipe support</a
         >.</AppToast
       >
     </form>
-    <aside v-if="!isConnected" class="form-aside">
+    <aside class="form-aside">
       <h2>Déjà client ?</h2>
       <nuxt-link to="/login" class="btn-default border-color"
         >Connexion</nuxt-link
@@ -39,10 +38,12 @@
 <script>
 import { mapState } from 'vuex'
 import AppToast from '@/components/AppToast.vue'
+import AppSigninSuccessfull from '@/components/AppSigninSuccessfull.vue'
 
 export default {
   components: {
-    AppToast
+    AppToast,
+    AppSigninSuccessfull
   },
   data() {
     return {
@@ -53,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isConnected', 'errorWhenSignup'])
+    ...mapState(['newUserIsRegistered', 'errorWhenSignup'])
   },
   methods: {
     signupFunction() {
@@ -64,6 +65,7 @@ export default {
           email: this.email,
           password: this.password
         }
+        this.passwordError = false
         this.$store.commit('getNewUserInfo', infoOutput)
         this.$store.dispatch('registerNewUser')
       }

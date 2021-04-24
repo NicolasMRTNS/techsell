@@ -11,6 +11,7 @@ export const state = () => ({
   user: [],
   newProduct: '',
   newUser: [],
+  newUserIsRegistered: false,
   isConnected: false,
   userId: '',
   token: '',
@@ -70,10 +71,14 @@ export const mutations = {
     state.errorWhenSignup = false
     state.isConnected = true
     state.newUser = []
+    state.newUserIsRegistered = false
     state.user = []
     state.invalidLogin = ''
     state.userId = response.userId
     state.token = response.token
+  },
+  newUserRegistered: (state) => {
+    state.newUserIsRegistered = true
   },
   productError: (state) => {
     state.errorWhenPushing = true
@@ -135,7 +140,7 @@ export const actions = {
   async registerNewUser({ state, commit }) {
     await this.$axios
       .$post('/api/auth/signup', state.newUser)
-      .then(() => commit('connectUser'))
+      .then(() => commit('newUserRegistered'))
       .catch(() => commit('signupError'))
   }
 }

@@ -23,12 +23,16 @@
       </article>
     </section>
     <button
-      v-if="!cartSubmitted && currentProduct.userId !== userId"
+      v-if="!cartSubmitted && currentProduct.userId !== userId && isConnected"
       class="btn-default border-color"
       @click="addToCart"
     >
       Ajouter au panier
     </button>
+    <AppToast v-if="!isConnected" class="toast__fail"
+      >Pour ajouter cet article à votre panier, vous devez être connecter à
+      votre compte TechSell™</AppToast
+    >
     <nuxt-link
       v-if="currentProduct.userId === userId"
       type="button"
@@ -59,7 +63,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['productData', 'userId']),
+    ...mapState(['productData', 'userId', 'isConnected']),
     // To get the current product, we use a for loop so we can break when the product is found
     currentProduct() {
       let result
