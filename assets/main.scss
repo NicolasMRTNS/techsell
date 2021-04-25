@@ -105,6 +105,11 @@ button:hover,
 .btn-danger:hover {
   color: $danger-color;
 }
+.btn-confirm {
+  margin: 0 auto;
+  display: block;
+  width: 230px;
+}
 
 // Input and text area style
 input,

@@ -9,22 +9,29 @@
         <tr>
           <th>Produit</th>
           <th>Prix</th>
+          <th>Supprimer des articles</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in cart" :key="item.id">
           <td>{{ item.name }}</td>
           <td>{{ item.price }} €</td>
+          <td>
+            <button class="btn-delete" @click="deleteProductFromCart(item.id)">
+              <span class="material-icons color-primary">delete</span>
+            </button>
+          </td>
         </tr>
         <tr class="color-primary">
           <td>Prix total</td>
           <td>{{ totalPrice }} €</td>
+          <td>{{ numberOfItemsInCart }} articles</td>
         </tr>
       </tbody>
     </table>
     <button
       v-if="!cartHasBeenSubmitted"
-      class="btn-default border-color"
+      class="btn-default border-color btn-confirm"
       @click.prevent="cartSubmitted"
     >
       Valider mon panier
@@ -52,12 +59,16 @@ export default {
   },
   computed: {
     ...mapState(['cart']),
-    ...mapGetters(['totalPrice'])
+    ...mapGetters(['totalPrice', 'numberOfItemsInCart'])
   },
   methods: {
     cartSubmitted() {
       this.cartHasBeenSubmitted = true
       this.$store.commit('emptyCart')
+    },
+    deleteProductFromCart(id) {
+      const itemToDelete = id
+      this.$store.commit('updateCart', itemToDelete)
     }
   }
 }
@@ -71,9 +82,10 @@ tr.color-primary {
   font-size: 1.1rem;
   background-color: #fff;
 }
-button {
-  margin: 0 auto;
-  display: block;
-  width: 230px;
+.btn-delete {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 </style>

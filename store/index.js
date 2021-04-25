@@ -49,6 +49,14 @@ export const mutations = {
   emptyCart: (state) => {
     state.cart = []
   },
+  updateCart: (state, itemToDelete) => {
+    state.cart.forEach((item) => {
+      if (item.id === itemToDelete) {
+        state.cart.splice(item, 1)
+      }
+    })
+    return state.cart
+  },
   newProductToMutate: (state, productToPushInDatabase) => {
     state.newProduct = productToPushInDatabase
   },
