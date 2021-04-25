@@ -64,6 +64,15 @@ export default {
   methods: {
     cartSubmitted() {
       this.cartHasBeenSubmitted = true
+      const productsToDelete = []
+      this.cart.forEach((item) => {
+        productsToDelete.push(item)
+      })
+      productsToDelete.forEach((item) => {
+        const productToDelete = item.id
+        this.$store.commit('deletedProduct', productToDelete)
+        this.$store.dispatch('deleteProductFromDatabase')
+      })
       this.$store.commit('emptyCart')
     },
     deleteProductFromCart(id) {
