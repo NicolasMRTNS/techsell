@@ -101,7 +101,6 @@ export const mutations = {
 }
 
 export const actions = {
-  // Get all products
   async getProductData({ commit }) {
     await this.$axios
       .$get('/api/products')
@@ -111,7 +110,6 @@ export const actions = {
       // eslint-disable-next-line no-console
       .catch((error) => console.error(error))
   },
-  // Post a product
   async pushToDatabase({ state, dispatch, commit }) {
     await this.$axios
       .$post('/api/products', state.newProduct, {
@@ -126,7 +124,6 @@ export const actions = {
       })
       .catch(() => commit('productError'))
   },
-  // Delete a product
   async deleteProductFromDatabase({ state, dispatch }) {
     await this.$axios
       .$delete(`/api/products/${state.productToDelete}`)
@@ -134,7 +131,6 @@ export const actions = {
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error))
   },
-  // User login
   async loginUser({ state, commit }) {
     await this.$axios
       .$post('/api/auth/login', state.user)
@@ -144,7 +140,6 @@ export const actions = {
         commit('loginFailed', error)
       })
   },
-  // Register new user
   async registerNewUser({ state, commit }) {
     await this.$axios
       .$post('/api/auth/signup', state.newUser)

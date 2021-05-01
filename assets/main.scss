@@ -238,3 +238,24 @@ table th {
     background: #a8060e;
   }
 }
+
+// Scrollbar
+// overflow-y: scroll prevents the scrollbar to add width to the page.
+html {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7c6c6;
+  &:hover {
+    background: #858383;
+  }
+}
