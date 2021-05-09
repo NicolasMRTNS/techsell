@@ -11,7 +11,7 @@
       </div>
       <div class="brand-div">
         <nuxt-link exact to="/">
-          <p class="brand">Tech Sell</p>
+          <p class="brand">TechSell</p>
         </nuxt-link>
       </div>
       <div class="icons">

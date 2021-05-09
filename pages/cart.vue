@@ -37,7 +37,7 @@
       Valider mon panier
     </button>
     <AppToast v-if="cartHasBeenSubmitted" class="toast"
-      >Panier validé, merci pour votre achat sur Tech Sell !</AppToast
+      >Panier validé, merci pour votre achat sur TechSell™ !</AppToast
     >
   </main>
 </template>

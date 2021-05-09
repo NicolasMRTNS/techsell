@@ -2,7 +2,7 @@
   <div class="container">
     <article class="border-color">
       <p>
-        Tech Sell est la plateforme de référence si vous souhaitez vendre vos
+        TechSell™ est la plateforme de référence si vous souhaitez vendre vos
         produits tech ou en acheter de nouveaux. L’achat et la vente se font
         entre particuliers passionnés de tech, pour garantir du matériel de
         qualité !

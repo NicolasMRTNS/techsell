@@ -24,7 +24,7 @@
         rows="6"
       ></textarea>
       <input type="file" name="imageUpload" @change="previewFile" />
-      <img v-if="productImage" :src="productImage" :alt="productDescription" />
+      <img v-if="url" :src="url" :alt="productDescription" />
       <button
         v-if="!productSubmitted"
         class="btn-default border-color"
@@ -38,7 +38,7 @@
         ligne. Tous les champs sont obligatoires.</AppToast
       >
       <!--If the form is good to go-->
-      <AppToast v-if="productSubmitted" class="toast"
+      <AppToast v-if="productSubmitted && !errorWhenPushing" class="toast"
         >Votre article a été mis en vente</AppToast
       >
       <!--If error server side-->
@@ -70,7 +70,8 @@ export default {
       productPrice: '',
       productCategory: '',
       productDescription: '',
-      productImage: '',
+      productImage: null,
+      url: null,
       productSubmitted: false,
       errors: false
     }
@@ -100,6 +101,7 @@ export default {
   methods: {
     previewFile(event) {
       this.$v.productImage.$model = event.target.files[0]
+      this.url = URL.createObjectURL(this.productImage)
     },
     productOnline() {
       // Check if there are any errors in the form
@@ -159,5 +161,8 @@ select {
 }
 button {
   margin-bottom: 1rem;
+}
+img {
+  background-size: cover !important;
 }
 </style>

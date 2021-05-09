@@ -1,7 +1,7 @@
 <template>
   <section role="img" class="masthead" aria-label="Hero for the homepage">
     <div class="brand-and-slogan container">
-      <h1 class="brand">Tech Sell</h1>
+      <h1 class="brand">TechSell</h1>
       <h2>La plateforme d'achat/vente de matériel tech</h2>
     </div>
   </section>

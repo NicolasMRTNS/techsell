@@ -30,8 +30,8 @@
       Ajouter au panier
     </button>
     <AppToast v-if="!isConnected" class="toast__fail"
-      >Pour ajouter cet article à votre panier, vous devez être connecter à
-      votre compte TechSell™</AppToast
+      >Pour ajouter cet article à votre panier, vous devez être connecté à votre
+      compte TechSell™</AppToast
     >
     <nuxt-link
       v-if="currentProduct.userId === userId"
